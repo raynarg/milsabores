@@ -1,0 +1,16 @@
+codigo,nombre,categoria,precio_mayorista,precio_minorista,unidad,imagen,tag
+HAR-201,Harina de Trigo 000 Cañuelas Pampa (Bolsa 25kg),Harinas y Secos,"$ 19.800,00","$ 22.400,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Panadería
+HAR-202,Harina Integral Fina Molino Florencia (Bolsa 25kg),Harinas y Secos,"$ 22.100,00","$ 24.900,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Saludable
+HAR-203,Fécula de Mandioca Especial (Bolsa 25kg),Harinas y Secos,"$ 42.000,00","$ 47.500,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Sin TACC
+DUL-201,Dulce de Leche Familiar Vacalin (Pote 1kg),Dulces y Repostería,"$ 4.900,00","$ 5.600,00",Pote 1 kg,/images/cake-tall-svgrepo-com.svg,Minorista
+DUL-202,Crema de Avellanas Nutella Profesional (Balde 3kg),Dulces y Repostería,"$ 48.000,00","$ 54.000,00",Balde 3 kg,/images/cake-tall-svgrepo-com.svg,Importado
+DUL-203,Azúcar Impalpable Especial para Glaseado (Bolsa 5kg),Dulces y Repostería,"$ 11.800,00","$ 13.200,00",Bolsa 5 kg,/images/cake-tall-svgrepo-com.svg,Pastelería
+ACE-201,Aceite de Oliva Extra Virgen Laur Gran Mendoza (Botella 500ml),Aceites y Grasas,"$ 9.800,00","$ 11.200,00",Botella 500 ml,/images/oils-oil-svgrepo-com.svg,Gourmet
+ACE-202,Margarina Hojaldre Vegetal Vacalin (Caja 10kg),Aceites y Grasas,"$ 26.500,00","$ 29.800,00",Caja 10 kg,/images/oils-oil-svgrepo-com.svg,Panadería
+FIA-201,Queso Parmesano Regio Estacionado (Horma x 5kg),Fiambres y Quesos,"$ 45.000,00","$ 51.000,00",Horma 5 kg,/images/cheese-1-svgrepo-com.svg,Quesería
+FIA-202,Panceta Ahumada Seleccionada en Pieza (2kg),Fiambres y Quesos,"$ 23.400,00","$ 26.500,00",Pieza x 2kg,/images/cheese-1-svgrepo-com.svg,Fiambrería
+FIA-203,Queso Azul Premium Roquefort (Pieza 2.5kg),Fiambres y Quesos,"$ 29.000,00","$ 33.200,00",Pieza 2.5 kg,/images/cheese-1-svgrepo-com.svg,Especialidad
+CON-201,Pimentón Ahumado Celta (Bolsa 1kg),Condimentos,"$ 11.600,00","$ 13.100,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos
+CON-202,Nuez Moscada Molida Pura (Bolsa 500g),Condimentos,"$ 14.200,00","$ 16.000,00",Bolsa 500 g,/images/logo-milsabores-recortado.png,Repostería
+CON-203,Ajo en Polvo Deshidratado (Bolsa 1kg),Condimentos,"$ 8.900,00","$ 10.200,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Gastronomía
+CON-204,Comino Molido Especial Seleccionado (Bolsa 1kg),Condimentos,"$ 12.800,00","$ 14.500,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos

@@ -1,0 +1,22 @@
+{
+  "name": "milsabores",
+  "version": "1.0.0",
+  "description": "Sistema de catálogo y gestión para Distribuidora Mil Sabores",
+  "private": true,
+  "scripts": {
+    "dev": "node backend/src/server.js",
+    "start": "node backend/src/server.js",
+    "db:migrate": "node backend/scripts/migrate.js",
+    "db:seed": "node backend/scripts/import-csv.js backend/data/sample_catalogo.csv",
+    "csv:import": "node backend/scripts/import-csv.js",
+    "csv:import:drive": "node backend/scripts/import-csv.js --drive"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.0"
+  }
+}

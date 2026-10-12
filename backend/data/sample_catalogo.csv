@@ -1,0 +1,19 @@
+codigo,nombre,categoria,precio_mayorista,precio_minorista,unidad,imagen,tag
+HAR-001,Harina de Trigo 000 Cañuelas (Bolsa 25kg),Harinas y Secos,"$ 18.500,00","$ 21.000,00",Bolsa 25 kg,/images/imagenquienessomos.png,Ideal Panaderías
+HAR-002,Harina Leudante Mariel (Bolsa 25kg),Harinas y Secos,"19200.00","21800.00",Bolsa 25 kg,/images/imagenquienessomos.png,Mayorista
+DUL-001,Dulce de Leche Repostero Vacalin (Cubeta 4kg),Dulces y Repostería,"$ 14.800,00","$ 16.500,00",Cubeta 4 kg,/images/producto-vacalin-repostero.png,Más Vendido
+DUL-002,Dulce de Leche Repostero Vacalin (Balde 10kg),Dulces y Repostería,"$ 34.500,00","$ 38.000,00",Balde 10 kg,/images/producto-vacalin-torre.png,Precio Especial
+ACE-001,Aceite de Girasol Green Olive (Bidón 5 Litros),Aceites y Grasas,"$ 9.200,00","$ 10.500,00",Bidón 5 L,/images/producto-aceites.png,Gastronomía
+ACE-002,Aceite Comestible Letra (Bidón 4.5 Litros),Aceites y Grasas,"$ 8.100,00","$ 9.200,00",Bidón 4.5 L,/images/producto-aceites.png,Restaurantes
+AZU-001,Azúcar Blanco Ledesma (Bolsa 50kg),Harinas y Secos,"38000.00","42500.00",Bolsa 50 kg,/images/local-deposito-interior.png,Mayorista
+FIA-001,Queso Cremoso Barra / Muzzarella (Por kg),Fiambres y Quesos,"$ 6.800,00","$ 7.900,00",Kilo,/images/local-deposito-interior.png,Pizzas & Cocina
+FIA-002,Jamón Cocido Feteado Premium (Pieza x 3kg),Fiambres y Quesos,"$ 24.500,00","$ 27.900,00",Pieza aprox 3kg,/images/local-deposito-interior.png,Restaurantes
+LEV-001,Levadura Fresca Calsa (Pack x 500g),Harinas y Secos,"$ 2.400,00","$ 2.800,00",Paquete 500g,/images/imagenquienessomos.png,Panaderías
+CON-001,Orégano Seleccionado en Bolsa (1kg),Condimentos,"$ 11.200,00","$ 12.900,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos
+CON-002,Pimentón Dulce Seleccionado (1kg),Condimentos,"$ 9.500,00","$ 10.900,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos
+PRE-001,Premezcla Bizcochuelo Vainilla (Bolsa 10kg),Harinas y Secos,"$ 22.000,00","$ 24.900,00",Bolsa 10 kg,/images/imagenquienessomos.png,Pastelería
+DUL-003,Cacao Amargo en Polvo (Bolsa 1kg),Dulces y Repostería,"$ 13.500,00","$ 15.200,00",Bolsa 1 kg,/images/producto-vacalin-repostero.png,Repostería
+GRA-001,Grasa Bovina Refinada (Caja 10kg),Aceites y Grasas,"$ 18.900,00","$ 21.000,00",Caja 10 kg,/images/producto-aceites.png,Panaderías
+SAL-001,Sal Fina Entrefina Industrial (Bolsa 25kg),Harinas y Secos,"$ 9.800,00","$ 11.200,00",Bolsa 25 kg,/images/local-deposito-interior.png,Insumo Base
+FIA-003,Queso Sardo estacionado (Pieza cuña 3kg),Fiambres y Quesos,"$ 28.900,00","$ 32.500,00",Pieza x 3kg,/images/local-deposito-interior.png,Gastronomía
+CON-003,Pimienta Negra en Grano (Bolsa 1kg),Condimentos,"$ 15.400,00","$ 17.500,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos

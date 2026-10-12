@@ -1,0 +1,31 @@
+Eres un arquitecto de software senior con experiencia en desarrollo web full-stack y en diseño de monolitos modulares preparados para escalar horizontalmente. Responde en español.
+
+Estoy desarrollando una web para una distribuidora de insumos para panadería, pastelería y restaurantes. Ya tengo un HTML que servirá como base del diseño visual; úsalo como referencia de la estructura y estilo actuales: milsabores.html
+
+Para esta primera etapa necesito que definas e implementes la base de un proyecto con arquitectura frontend + backend, organizado como **monolito modular**, de modo que en el futuro se puedan añadir nuevos módulos (pedidos, clientes, facturación, etc.) sin reestructurar el código existente, y que el sistema pueda escalar horizontalmente. Solo debes implementar lo que se describe aquí; los módulos futuros deben quedar previstos en la estructura, no construidos.
+
+**Nivel de completitud:** implementación sólida con buenas prácticas, pero enfocada en lo esencial (enfoque MVP). No incluyas tests en esta entrega; deja previsto dónde se añadirían.
+
+**Stack confirmado:**
+- **Backend:** Node.js con Express.
+- **Base de datos:** **PostgreSQL**, priorizando la simplicidad por sobre cualquier otra consideración (esquema mínimo, sin infraestructura adicional innecesaria).
+- **Frontend:** estilos con **Tailwind CSS**. Evalúa si añadir **Vue** aporta valor a esta primera etapa frente a mantener HTML + JavaScript sobre el HTML base existente; propón una recomendación razonada, justifícala en una frase y aplícala en la implementación.
+
+**Frontend**
+- Integrar en el diseño las imágenes adjuntas en la carpeta `recursos-imagenes`.
+- Rediseñar los botones de WhatsApp e Instagram usando iconos de línea en blanco, de forma que respeten la paleta de colores del negocio.
+- El catálogo de productos debe solicitar sus recursos al backend de forma paginada, sin cargar el listado completo.
+- El catálogo web muestra únicamente las columnas `codigo`, `nombre`, `precio mayorista`, `precio minorista` y `categoria`. Esta selección de columnas es provisional y puede cambiar en una versión posterior, así que mantenla fácil de modificar.
+
+**Backend**
+- Funcionalidad principal: cargar los productos del catálogo y sus precios a la base de datos PostgreSQL a partir de un archivo **CSV** (por el momento, no Excel), y exponer el listado de productos con su precio. Implementa la lógica necesaria para parsear el CSV (cabeceras, delimitadores, codificación y tipos de datos numéricos y monetarios).
+- El archivo CSV se mantiene actualizado en una carpeta de Google Drive, por lo que la carga debe poder repetirse y actualizar los precios y productos existentes sin duplicarlos.
+- Cuando un producto deja de aparecer en el CSV, su fila debe quedar **oculta del catálogo pero conservarse en la base de datos** (no se borra definitivamente).
+
+**Entregables esperados**
+1. Estructura de carpetas del proyecto, explicando la responsabilidad de cada módulo y cómo se añadirán módulos futuros.
+2. Implementación del frontend del catálogo con paginación y los cambios de iconos solicitados.
+3. Implementación del backend: endpoint paginado de productos, esquema de base de datos PostgreSQL e importación del CSV con validación de columnas y filas.
+4. Instrucciones breves para ejecutar el proyecto localmente, incluyendo la configuración de PostgreSQL.
+
+**Decisiones técnicas pendientes:** antes de escribir código, resuelve explícitamente las decisiones que aún no están cerradas (cómo acceder al CSV desde Google Drive, formato esperado de columnas, manejo de productos que desaparecen del CSV), indicando para cada una la opción que recomiendas y el motivo, siempre privilegiando la simplicidad. Solo pregunta al usuario por aquellas que no puedas resolver con criterios razonables, e indica tu recomendación en cada una.

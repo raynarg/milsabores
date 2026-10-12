@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mil Sabores | Distribuidora Mayorista y Minorista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f9f3f4',
+                            100: '#f2e4e6',
+                            200: '#e5ccce',
+                            300: '#d0a7aa',
+                            400: '#b4777d',
+                            500: '#813F4C', // Color bordó insignia
+                            600: '#71333f',
+                            700: '#5f2b36',
+                            800: '#50262f',
+                            900: '#381c22',
+                            950: '#251217',
+                        },
+                        cream: {
+                            50: '#FFFFFF',
+                            100: '#FBF9F6',
+                            200: '#F3ECE4',
+                            300: '#E8DDD0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #251217; }
+        ::-webkit-scrollbar-thumb { background: #813F4C; border-radius: 99px; }
+        
+        .glass-header {
+            background: rgba(37, 18, 23, 0.90);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .editorial-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px -12px rgba(129, 63, 76, 0.15);
+        }
+
+        .img-zoom {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-card:hover .img-zoom {
+            transform: scale(1.06);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-brand-logo {
+            filter: brightness(0) saturate(100%) invert(8%) sepia(21%) saturate(1487%) hue-rotate(303deg) brightness(97%) contrast(96%);
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+        .marquee-brand-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Ocultar barra de scroll nativa para carrusel horizontal táctil */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .sticky-category-bar {
+            top: 4.5rem; /* debajo del header fijo de 4.5rem/5rem */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        @media (min-width: 640px) {
+            .sticky-category-bar {
+                top: 5.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Minimalista Estilo Revista -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 sm:h-24 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center space-x-2.5 sm:space-x-3 group">
+                <img src="/images/logomilsaboresinfondo.svg" alt="Mil Sabores Logo" class="h-12 sm:h-16 w-auto object-contain brightness-0 invert group-hover:scale-105 transition-transform duration-300">
+                <div>
+                    <span class="text-lg sm:text-2xl font-bold tracking-widest text-white block leading-none">
+                        MIL SABORES
+                    </span>
+                    <span class="font-serif italic text-brand-300 text-[11px] sm:text-sm tracking-wide">distribuidora</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-10 text-xs font-semibold tracking-widest uppercase text-brand-200">
+                <a href="#inicio" class="hover:text-white transition">Inicio</a>
+                <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
+                <a href="#nosotros" class="hover:text-white transition">Manifiesto</a>
+                <a href="#contacto" class="hover:text-white transition">Contacto</a>
+            </nav>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Instagram Oficial -->
+                <a href="https://instagram.com/milsabores_distri" target="_blank" rel="noopener noreferrer" 
+                   class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-brand-900/90 hover:bg-brand-800 text-white border border-brand-700/80 flex items-center justify-center transition hover:scale-105 shadow-sm"
+                   title="Instagram @milsabores_distri" aria-label="Instagram">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <!-- WhatsApp Oficial -->
+                <a href="https://wa.me/5493455012552?text=Hola%20Mil%20Sabores,%20quisiera%20consultar%20por%20listas%20de%20precios" target="_blank" rel="noopener noreferrer"
+                   class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-brand-900/90 hover:bg-brand-800 text-white border border-brand-700/80 flex items-center justify-center transition hover:scale-105 shadow-sm"
+                   title="WhatsApp 3455012552" aria-label="WhatsApp">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Hero Inmersiva (Corrección de Texto) -->
+    <section id="inicio" class="relative pt-44 pb-32 lg:pt-56 lg:pb-44 flex items-center min-h-[85vh] text-white overflow-hidden">
+        
+        <!-- Imagen de fondo en alta resolución nítida y encuadre natural -->
+        <div class="absolute inset-0 z-0 bg-brand-950">
+            <img src="/images/fondopresentacion.webp" 
+                 alt="Materia Prima Gastronómica" 
+                 class="w-full h-full object-cover object-right md:object-center opacity-45">
+        </div>
+
+        <!-- Capas de color para contraste y legibilidad -->
+        <div class="absolute inset-0 bg-brand-950/75 z-0 mix-blend-multiply pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/60 to-transparent z-0 pointer-events-none"></div>
+
+        <!-- Contenedor Principal de Texto -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 w-full">
+            <div class="max-w-3xl">
+                <!-- Etiqueta -->
+                <div class="inline-flex items-center space-x-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full text-[11px] font-semibold tracking-widest uppercase text-brand-200 mb-8 backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+                    <span>Distribución Mayorista & Minorista de Excelencia</span>
+                </div>
+
+                <!-- Título (Sin drop-shadow problemático) -->
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.05] text-white mb-8">
+                    La materia prima que define el estándar de la <span class="font-serif italic font-normal text-brand-300">gastronomía</span>.
+                </h1>
+
+                <!-- Párrafo (Sin drop-shadow problemático) -->
+                <p class="text-brand-100 text-base sm:text-lg font-light leading-relaxed max-w-2xl mb-12">
+                    Proveemos insumos seleccionados para panaderías, pastelerías y restaurantes. Stock permanente y compromiso comercial directo en cada entrega.
+                </p>
+
+                <!-- Botones -->
+                <div class="flex flex-wrap items-center gap-5">
+                    <a href="#catalogo" class="bg-white text-brand-950 font-semibold px-8 py-4 rounded-2xl shadow-xl hover:bg-cream-200 transition text-xs tracking-widest uppercase">
+                        Explorar Catálogo
+                    </a>
+                    <a href="https://wa.me/5493455012552" target="_blank" class="bg-brand-950/50 hover:bg-brand-900 border border-white/20 text-white font-medium px-8 py-4 rounded-2xl transition text-xs tracking-widest uppercase backdrop-blur-md">
+                        Asesoramiento Comercial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slogan Editorial Previas a las Marcas -->
+    <section class="bg-cream-100 pt-16 pb-6 px-6 sm:px-8 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-brand-500 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-[11px] block mb-3">Alianzas Comerciales</span>
+            <p class="font-serif italic text-2xl sm:text-4xl text-slate-800 tracking-tight leading-snug">
+                “Trabajamos con los líderes de la industria para ofrecerte lo mejor.”
+            </p>
+        </div>
+    </section>
+
+    <!-- Franja de Marcas Aliadas (Infinite Logo Marquee) -->
+    <section class="bg-cream-100 pb-16 pt-4 overflow-hidden relative select-none">
+        <!-- Sombras de desvanecimiento lateral adaptadas a #FBF9F6 -->
+        <div class="absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-cream-100 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-cream-100 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="animate-marquee items-center gap-12 sm:gap-16">
+            <!-- Set 1 de Logos -->
+            <div class="flex items-center gap-12 sm:gap-16 shrink-0">
+                <!-- Milagros del Sol -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/milagrossol.svg" alt="Milagros de Sol" class="h-full w-full object-contain marquee-brand-logo scale-110">
+                </div>
+                <!-- Molino Cañuelas -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/cañuelas.svg" alt="Molino Cañuelas" class="h-full w-full object-contain marquee-brand-logo scale-110">
+                </div>
+                <!-- Alpino -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/alpino.svg" alt="Alpino" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Chocolart -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/chocolart.svg" alt="Chocolart" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Hellmann's -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/Hellmanns-Logo.svg" alt="Hellmann's" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Vacalin -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/vacalin.svg" alt="Vacalin" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Nutella (Reducido a proporción armoniosa) -->
+                <div class="h-10 sm:h-12 w-32 sm:w-36 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/nutella-seeklogo.svg" alt="Nutella" class="h-full w-full object-contain marquee-brand-logo scale-90">
+                </div>
+                <!-- Laur (Reducido a proporción armoniosa) -->
+                <div class="h-10 sm:h-12 w-32 sm:w-36 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/LAUR.svg" alt="Laur" class="h-full w-full object-contain marquee-brand-logo scale-85">
+                </div>
+            </div>
+
+            <!-- Set 2 de Logos (Duplicado para loop infinito fluido) -->
+            <div class="flex items-center gap-12 sm:gap-16 shrink-0" aria-hidden="true">
+                <!-- Milagros del Sol -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/milagrossol.svg" alt="Milagros de Sol" class="h-full w-full object-contain marquee-brand-logo scale-110">
+                </div>
+                <!-- Molino Cañuelas -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/cañuelas.svg" alt="Molino Cañuelas" class="h-full w-full object-contain marquee-brand-logo scale-110">
+                </div>
+                <!-- Alpino -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/alpino.svg" alt="Alpino" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Chocolart -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/chocolart.svg" alt="Chocolart" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Hellmann's -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/Hellmanns-Logo.svg" alt="Hellmann's" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Vacalin -->
+                <div class="h-12 sm:h-14 w-36 sm:w-44 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/vacalin.svg" alt="Vacalin" class="h-full w-full object-contain marquee-brand-logo scale-105">
+                </div>
+                <!-- Nutella (Reducido a proporción armoniosa) -->
+                <div class="h-10 sm:h-12 w-32 sm:w-36 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/nutella-seeklogo.svg" alt="Nutella" class="h-full w-full object-contain marquee-brand-logo scale-90">
+                </div>
+                <!-- Laur (Reducido a proporción armoniosa) -->
+                <div class="h-10 sm:h-12 w-32 sm:w-36 flex items-center justify-center">
+                    <img src="/images/infinite-marquee-logo/LAUR.svg" alt="Laur" class="h-full w-full object-contain marquee-brand-logo scale-85">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Catálogo Estilo Galería Minimalista -->
+    <section id="catalogo" class="py-16 sm:py-32 bg-cream-100 min-h-screen">
+        <div class="max-w-[92rem] mx-auto px-4 sm:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 gap-6 sm:gap-8">
+                <div>
+                    <span class="text-brand-500 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-[11px] block mb-2 sm:mb-3">Índice de Productos</span>
+                    <h2 class="text-3xl sm:text-5xl font-light text-slate-900 tracking-tight">Catálogo y Precios</h2>
+                    <p class="text-slate-500 font-light mt-2 sm:mt-3 max-w-lg text-xs sm:text-base">Selección de insumos actualizados en tiempo real con opción de exportación directa.</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+                    <button onclick="downloadPriceList()" class="bg-brand-900 hover:bg-brand-500 text-white font-medium px-4 sm:px-5 py-3 rounded-2xl transition flex items-center justify-center space-x-2 text-xs uppercase tracking-wider shadow-sm active:scale-95">
+                        <svg class="w-4 h-4 stroke-current fill-none shrink-0" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Descargar Listado PDF</span>
+                    </button>
+
+                    <!-- Selector de Vista -->
+                    <div class="inline-flex justify-center bg-white p-1 rounded-2xl border border-cream-300 shadow-sm">
+                        <button id="viewGridBtn" onclick="switchView('grid')" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-semibold transition bg-brand-500 text-white shadow-sm">
+                            Galería
+                        </button>
+                        <button id="viewTableBtn" onclick="switchView('table')" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-brand-500">
+                            Tabla Técnica
+                        </button>
+                    </div>
+
+                    <!-- Buscador -->
+                    <div class="relative w-full sm:w-72">
+                        <input type="text" id="searchInput" oninput="onSearchInput(this.value)" placeholder="Buscar insumo o código..." 
+                               class="w-full pl-11 pr-4 py-3 bg-white border border-cream-300 rounded-2xl text-xs font-medium focus:outline-none focus:border-brand-500 shadow-sm transition">
+                        <svg class="w-4 h-4 absolute left-4 top-3.5 text-slate-400 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Categorías Sticky (Permanece visible al scrollear en celulares y PCs) -->
+            <div class="sticky sticky-category-bar z-30 bg-cream-100/95 py-3 -mx-4 px-4 sm:mx-0 sm:px-0 border-b border-cream-300/80 mb-8 sm:mb-12 transition-all">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hidden lg:block shrink-0">Filtrar por:</div>
+                    <!-- Contenedor scroll horizontal táctil sin barras toscas -->
+                    <div id="categoriesContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth py-1 w-full">
+                        <!-- Botones Dinámicos generados por JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingState" class="hidden py-32 text-center">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-brand-500 border-t-transparent mb-4"></div>
+                <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">Cargando insumos...</p>
+            </div>
+
+            <!-- Vista Grid / Tarjetas Editoriales Responsivas (1 col en móvil pequeño, 2 cols en móvil estándar, 3 en tablet, 4-5 en desktop) -->
+            <div id="productGrid" class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+                <!-- Dinámico -->
+            </div>
+
+            <!-- Vista Tabla Estricta -->
+            <div id="productTableContainer" class="hidden bg-white rounded-3xl border border-cream-300 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-cream-200" id="productTable">
+                        <thead class="bg-cream-100" id="tableHeader"></thead>
+                        <tbody class="divide-y divide-cream-200 bg-white" id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            <div class="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-cream-300 pt-8">
+                <div id="paginationInfo" class="text-xs font-medium tracking-wide text-slate-500"></div>
+                <div id="paginationContainer" class="flex items-center space-x-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Quiénes Somos / Manifiesto -->
+    <section id="nosotros" class="py-32 bg-white border-t border-cream-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-6 space-y-8">
+                    <span class="text-brand-500 font-bold uppercase tracking-[0.2em] text-[11px] block">Filosofía & Trayectoria</span>
+                    <h2 class="text-4xl sm:text-6xl font-light text-slate-900 tracking-tight leading-[1.1]">
+                        Compromiso con el <span class="font-serif italic text-brand-500">detalle</span>.
+                    </h2>
+                    <p class="text-slate-600 font-light text-base sm:text-lg leading-relaxed">
+                        En <strong class="text-slate-900 font-medium">Mil Sabores</strong> unimos la solidez de la distribución mayorista con la cercanía del servicio directo. Abastecemos cocinas e industrias con la convicción de que la calidad de un plato comienza en sus insumos.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-cream-200">
+                        <div>
+                            <span class="text-3xl font-light text-brand-500 block mb-1">100%</span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Stock Permanente</span>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-light text-brand-500 block mb-1">+500</span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Insumos Activos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-6 flex justify-center">
+                    <div class="relative w-full max-w-lg aspect-square rounded-3xl overflow-hidden shadow-2xl border border-cream-300 group select-none bg-slate-900">
+                        <!-- Carousel Track / Slides sin marcos blancos ni paddings innecesarios -->
+                        <div id="nosotrosCarousel" class="relative w-full h-full cursor-pointer">
+                            <!-- Slide 1: imageninicial.png -->
+                            <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10">
+                                <img src="/images/imageninicial.png" alt="Mil Sabores Insumos Gastronómicos" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <!-- Slide 2: logo-milsabores-recortado.png -->
+                            <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+                                <img src="/images/logo-milsabores-recortado.png" alt="Mil Sabores Logo Oficial" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                        </div>
+
+                        <!-- Flechas de navegación minimalistas integradas -->
+                        <button id="carouselPrevBtn" type="button" aria-label="Anterior"
+                                class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 backdrop-blur-md opacity-0 group-hover:opacity-100">
+                            <svg class="w-5 h-5 stroke-current fill-none -ml-0.5" viewBox="0 0 24 24" stroke-width="2.2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button id="carouselNextBtn" type="button" aria-label="Siguiente"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 backdrop-blur-md opacity-0 group-hover:opacity-100">
+                            <svg class="w-5 h-5 stroke-current fill-none ml-0.5" viewBox="0 0 24 24" stroke-width="2.2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+
+                        <!-- Indicadores sutiles tipo Glassmorphism -->
+                        <div id="carouselDots" class="absolute bottom-4 inset-x-0 z-20 flex justify-center items-center space-x-2">
+                            <button type="button" onclick="goToCarouselSlide(0)" class="carousel-dot w-6 h-1.5 rounded-full bg-brand-500 transition-all duration-300 shadow-sm" aria-label="Ver imagen 1"></button>
+                            <button type="button" onclick="goToCarouselSlide(1)" class="carousel-dot w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all duration-300 shadow-sm" aria-label="Ver imagen 2"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Editorial -->
+    <footer id="contacto" class="bg-brand-950 text-white py-24 border-t border-brand-900">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <img src="/images/logomilsaboresinfondo.svg" alt="Mil Sabores Logo" class="h-12 w-auto object-contain brightness-0 invert">
+                    <div>
+                        <span class="text-lg font-bold tracking-widest block leading-none">MIL SABORES</span>
+                        <span class="font-serif italic text-brand-300 text-xs">distribuidora</span>
+                    </div>
+                </div>
+                <p class="text-brand-200/70 font-light text-xs sm:text-sm leading-relaxed">
+                    Distribuidora mayorista y minorista de insumos gastronómicos. Calidad, confianza y logística directa.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-[11px] tracking-[0.2em] uppercase mb-6 text-brand-300">Horarios</h3>
+                <ul class="space-y-3 text-xs font-light text-brand-200/80">
+                    <li class="flex justify-between border-b border-white/5 pb-2">
+                        <span>Lunes a Viernes:</span>
+                        <span class="font-medium">08:30 a 12:30 / 17:30 a 20:00</span>
+                    </li>
+                    <li class="flex justify-between border-b border-white/5 pb-2">
+                        <span>Sábados:</span>
+                        <span class="font-medium">08:30 a 12:30</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-[11px] tracking-[0.2em] uppercase mb-6 text-brand-300">Contacto</h3>
+                <ul class="space-y-3 text-xs font-light text-brand-200/80">
+                    <li>Teléfono: 3455012552</li>
+                    <li>Instagram: @milsabores_distri</li>
+                    <li>Envíos a Domicilio</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-[11px] tracking-[0.2em] uppercase mb-6 text-brand-300">Pagos</h3>
+                <p class="text-brand-200/70 font-light text-xs mb-4">Efectivo, Transferencia y Tarjetas de Débito/Crédito.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-brand-900/80 text-brand-200 text-[10px] uppercase font-semibold px-3 py-1.5 rounded-lg border border-white/5">Efectivo</span>
+                    <span class="bg-brand-900/80 text-brand-200 text-[10px] uppercase font-semibold px-3 py-1.5 rounded-lg border border-white/5">Transferencia</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 mt-20 pt-8 border-t border-white/5 text-center text-xs font-light text-brand-400">
+            &copy; 2026 Mil Sabores Distribuidora. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Scripts de integración -->
+    <script type="module">
+        import { CATALOG_COLUMNS, formatCurrency } from '/js/catalog-config.js';
+
+        let currentView = 'grid';
+        let currentCategory = 'todos';
+        let currentPage = 1;
+        let searchQuery = '';
+        let debounceTimer = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTableHeaders();
+            loadCategories();
+            fetchCatalog();
+        });
+
+        window.switchView = function(view) {
+            currentView = view;
+            const gridEl = document.getElementById('productGrid');
+            const tableEl = document.getElementById('productTableContainer');
+            const gridBtn = document.getElementById('viewGridBtn');
+            const tableBtn = document.getElementById('viewTableBtn');
+
+            if (view === 'grid') {
+                gridEl.classList.remove('hidden');
+                tableEl.classList.add('hidden');
+                gridBtn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold transition bg-brand-500 text-white shadow-sm";
+                tableBtn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-brand-500";
+            } else {
+                gridEl.classList.add('hidden');
+                tableEl.classList.remove('hidden');
+                gridBtn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold transition text-slate-600 hover:text-brand-500";
+                tableBtn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold transition bg-brand-500 text-white shadow-sm";
+            }
+        };
+
+        function renderTableHeaders() {
+            const tr = document.createElement('tr');
+            CATALOG_COLUMNS.forEach(col => {
+                const th = document.createElement('th');
+                th.className = `px-6 py-4 text-[10px] font-bold tracking-widest uppercase text-slate-500 text-${col.align}`;
+                th.textContent = col.label;
+                tr.appendChild(th);
+            });
+            
+            document.getElementById('tableHeader').innerHTML = '';
+            document.getElementById('tableHeader').appendChild(tr);
+        }
+
+        async function loadCategories() {
+            try {
+                const res = await fetch('/api/catalog/categories');
+                const json = await res.json();
+                if (json.success && Array.isArray(json.data)) {
+                    renderCategoryButtons(['todos', ...json.data]);
+                }
+            } catch (err) {
+                renderCategoryButtons(['todos']);
+            }
+        }
+
+        function renderCategoryButtons(categories) {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                const isSelected = currentCategory.toLowerCase() === cat.toLowerCase();
+                btn.className = `px-3.5 sm:px-4 py-2 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition shrink-0 whitespace-nowrap select-none active:scale-95 ${
+                    isSelected ? 'bg-brand-500 text-white shadow-sm ring-1 ring-brand-600' : 'bg-white text-slate-700 hover:bg-cream-200 border border-cream-300'
+                }`;
+                btn.textContent = cat === 'todos' ? 'Todos los Insumos' : cat;
+                btn.onclick = () => {
+                    currentCategory = cat;
+                    currentPage = 1;
+                    renderCategoryButtons(categories);
+                    fetchCatalog();
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        window.onSearchInput = function(val) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                searchQuery = val.trim();
+                currentPage = 1;
+                fetchCatalog();
+            }, 300);
+        };
+
+        async function fetchCatalog() {
+            const loading = document.getElementById('loadingState');
+            const grid = document.getElementById('productGrid');
+            const tableBody = document.getElementById('tableBody');
+            loading.classList.remove('hidden');
+
+            try {
+                const params = new URLSearchParams({ page: currentPage, limit: 15, search: searchQuery, category: currentCategory });
+                const res = await fetch(`/api/catalog/products?${params.toString()}`);
+                const response = await res.json();
+                if (!response.success) throw new Error(response.error);
+
+                window._currentProductsData = response.data || [];
+                renderProducts(response.data);
+                renderTableRows(response.data);
+                renderPagination(response.pagination);
+            } catch (error) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-red-500 text-xs font-semibold">Error al cargar productos.</div>`;
+            } finally {
+                loading.classList.add('hidden');
+            }
+        }
+
+        function getCategoryIcon(category) {
+            const cat = (category || '').toLowerCase();
+            if (cat.includes('harina') || cat.includes('seco')) return '/images/pizza-svgrepo-com.svg';
+            if (cat.includes('queso') || cat.includes('fiambre')) return '/images/cheese-1-svgrepo-com.svg';
+            if (cat.includes('aceite') || cat.includes('grasa')) return '/images/oils-oil-svgrepo-com.svg';
+            if (cat.includes('dulce') || cat.includes('reposter')) return '/images/cake-tall-svgrepo-com.svg';
+            return '/images/pizza-svgrepo-com.svg';
+        }
+
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            if (!items || items.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-slate-400 text-xs font-medium uppercase tracking-widest">No se encontraron insumos.</div>`;
+                return;
+            }
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl sm:rounded-3xl border border-cream-300 editorial-card overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition";
+                const imgSrc = getCategoryIcon(product.category);
+
+                card.innerHTML = `
+                    <div class="h-36 sm:h-48 overflow-hidden relative bg-cream-50 flex items-center justify-center p-4 sm:p-8 border-b border-cream-200/60">
+                        <img src="${imgSrc}" alt="${product.name}" class="w-16 h-16 sm:w-28 sm:h-28 object-contain img-zoom drop-shadow-sm" onerror="this.src='/images/logo-milsabores-recortado.png'">
+                    </div>
+                    <div class="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-brand-500 uppercase tracking-widest block mb-1 sm:mb-2">${product.code}</span>
+                            <h3 class="font-semibold text-slate-900 text-xs sm:text-sm leading-snug line-clamp-2 mb-3 sm:mb-4">${product.name}</h3>
+                        </div>
+                        <div class="space-y-1.5 sm:space-y-2 border-t border-cream-200 pt-3 sm:pt-4">
+                            <div class="flex items-baseline justify-between">
+                                <span class="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-wider">Mayorista</span>
+                                <span class="text-sm sm:text-base font-bold text-brand-500">${formatCurrency(product.wholesale_price)}</span>
+                            </div>
+                            <div class="flex items-baseline justify-between text-[11px] sm:text-xs">
+                                <span class="text-slate-400">Minorista</span>
+                                <span class="font-semibold text-slate-700">${formatCurrency(product.retail_price)}</span>
+                            </div>
+                            ${product.unit ? `<div class="text-[10px] sm:text-[11px] text-slate-400 text-right">${product.unit}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderTableRows(items) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            items.forEach(product => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-cream-100/60 transition";
+                CATALOG_COLUMNS.forEach(col => {
+                    const td = document.createElement('td');
+                    td.className = `px-6 py-4 text-xs text-${col.align}`;
+                    if (col.key === 'code') {
+                        td.className += " font-mono font-bold text-brand-600";
+                        td.textContent = product.code;
+                    } else if (col.key === 'name') {
+                        td.className += " font-semibold text-slate-900";
+                        td.textContent = product.name;
+                    } else if (col.key === 'category') {
+                        td.innerHTML = `<span class="bg-brand-50 text-brand-700 text-[10px] font-semibold px-2.5 py-1 rounded-full">${product.category || 'General'}</span>`;
+                    } else if (col.format === 'currency') {
+                        td.className += col.key === 'wholesale_price' ? " font-bold text-brand-500" : " text-slate-600";
+                        td.textContent = formatCurrency(product[col.key]);
+                    } else {
+                        td.textContent = product[col.key] || '-';
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderPagination(pagination) {
+            const info = document.getElementById('paginationInfo');
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+            if (!pagination || pagination.total === 0) { info.textContent = 'Sin registros'; return; }
+            
+            const from = (pagination.page - 1) * pagination.limit + 1;
+            const to = Math.min(pagination.page * pagination.limit, pagination.total);
+            info.textContent = `Mostrando ${from}–${to} de ${pagination.total} productos`;
+
+            if (pagination.totalPages <= 1) return;
+
+            for (let i = 1; i <= pagination.totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `w-9 h-9 rounded-xl text-xs font-semibold transition flex items-center justify-center ${
+                    i === pagination.page ? 'bg-brand-500 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-cream-200 border border-cream-300'
+                }`;
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => { currentPage = i; fetchCatalog(); document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' }); };
+                container.appendChild(pageBtn);
+            }
+        }
+
+        // Lógica de descarga PDF
+        async function getLogoDataUrl() {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth || 600;
+                    canvas.height = img.naturalHeight || 472;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    resolve({ dataUrl: canvas.toDataURL('image/png'), width: canvas.width, height: canvas.height });
+                };
+                img.onerror = () => resolve(null);
+                img.src = '/images/logomilsaboresinfondo.png';
+            });
+        }
+
+        window.downloadPriceList = async function() {
+            const btn = document.querySelector('button[onclick="downloadPriceList()"]');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) { btn.disabled = true; btn.innerHTML = `Generando PDF...`; }
+
+            try {
+                let allProducts = [];
+                try {
+                    const res = await fetch('/api/catalog/products?limit=500');
+                    const json = await res.json();
+                    if (json.success && Array.isArray(json.data)) {
+                        allProducts = json.data;
+                    }
+                } catch (err) {
+                    allProducts = window._currentProductsData || [];
+                }
+
+                if (!allProducts || allProducts.length === 0) {
+                    allProducts = window._currentProductsData || [];
+                }
+
+                allProducts.sort((a, b) => {
+                    const catA = (a.category || 'General').toLowerCase();
+                    const catB = (b.category || 'General').toLowerCase();
+                    if (catA < catB) return -1;
+                    if (catA > catB) return 1;
+                    return (a.name || '').localeCompare(b.name || '');
+                });
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+                const pageWidth = 210, pageHeight = 297, marginX = 14;
+                const brandPrimary = [129, 63, 76], brandDark = [56, 28, 34], brandLight = [249, 243, 244], creamBg = [251, 249, 246];
+
+                const logoObj = await getLogoDataUrl();
+                let startY = 16;
+                if (logoObj && logoObj.dataUrl) {
+                    const logoW = 38, logoH = (logoObj.height / logoObj.width) * logoW;
+                    doc.addImage(logoObj.dataUrl, 'PNG', (pageWidth - logoW) / 2, startY, logoW, logoH);
+                    startY += logoH + 4;
+                }
+
+                doc.setFontSize(13); doc.setFont('helvetica', 'bold'); doc.setTextColor(brandDark[0], brandDark[1], brandDark[2]);
+                doc.text('LISTADO OFICIAL DE PRECIOS', pageWidth / 2, startY, { align: 'center' });
+                startY += 5;
+
+                const today = new Date();
+                doc.setFontSize(8.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(120, 120, 120);
+                doc.text(`Mil Sabores Distribuidora  |  Actualizado: ${today.toLocaleDateString('es-AR')}`, pageWidth / 2, startY, { align: 'center' });
+                startY += 6;
+
+                const tableRows = [];
+                let lastCategory = null;
+                allProducts.forEach(prod => {
+                    const currentCat = (prod.category || 'General').toUpperCase();
+                    if (currentCat !== lastCategory) {
+                        tableRows.push([{ content: `CATEGORÍA: ${currentCat}`, colSpan: 5, styles: { fillColor: brandLight, textColor: brandPrimary, fontStyle: 'bold', fontSize: 8 } }]);
+                        lastCategory = currentCat;
+                    }
+                    tableRows.push([prod.code || '-', prod.name || '-', prod.unit || 'Unidad', formatCurrency(prod.wholesale_price), formatCurrency(prod.retail_price)]);
+                });
+
+                doc.autoTable({
+                    startY: startY,
+                    head: [['CÓDIGO', 'PRODUCTO', 'PRESENTACIÓN', 'MAYORISTA', 'MINORISTA']],
+                    body: tableRows,
+                    theme: 'plain',
+                    margin: { left: marginX, right: marginX, bottom: 18 },
+                    styles: { font: 'helvetica', fontSize: 7.5, cellPadding: 2.5, lineColor: [235, 230, 225], lineWidth: 0.1 },
+                    headStyles: { fillColor: brandPrimary, textColor: [255, 255, 255], fontStyle: 'bold', halign: 'center' },
+                    columnStyles: { 0: { halign: 'center', cellWidth: 22, fontStyle: 'bold' }, 1: { cellWidth: 'auto' }, 2: { halign: 'center', cellWidth: 26 }, 3: { halign: 'right', cellWidth: 32, fontStyle: 'bold', textColor: brandPrimary }, 4: { halign: 'right', cellWidth: 32 } },
+                    alternateRowStyles: { fillColor: creamBg }
+                });
+
+                const totalPages = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(7.5); doc.setTextColor(140, 140, 140);
+                    doc.text(`Página ${i} de ${totalPages}`, pageWidth - marginX, pageHeight - 8, { align: 'right' });
+                }
+
+                doc.save(`catalogo_milsabores_${today.toISOString().slice(0,10)}.pdf`);
+            } catch (err) {
+                alert(`Error al generar PDF: ${err.message}`);
+            } finally {
+                if (btn) { btn.disabled = false; btn.innerHTML = originalText; }
+            }
+        };
+
+        // --- Controlador del Carrusel "Quiénes Somos / Manifiesto" ---
+        let currentCarouselIndex = 0;
+        let carouselAutoplayTimer = null;
+
+        function updateCarouselUI() {
+            const slides = document.querySelectorAll('#nosotrosCarousel .carousel-slide');
+            const dots = document.querySelectorAll('#carouselDots .carousel-dot');
+            if (!slides.length) return;
+
+            slides.forEach((slide, idx) => {
+                if (idx === currentCarouselIndex) {
+                    slide.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+                    slide.classList.add('opacity-100', 'z-10');
+                } else {
+                    slide.classList.remove('opacity-100', 'z-10');
+                    slide.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                if (idx === currentCarouselIndex) {
+                    dot.className = 'carousel-dot w-6 h-1.5 rounded-full bg-brand-500 transition-all duration-300 shadow-sm';
+                } else {
+                    dot.className = 'carousel-dot w-2 h-1.5 rounded-full bg-white/60 hover:bg-white transition-all duration-300 shadow-sm';
+                }
+            });
+        }
+
+        window.goToCarouselSlide = function(index) {
+            const slides = document.querySelectorAll('#nosotrosCarousel .carousel-slide');
+            if (!slides.length) return;
+            currentCarouselIndex = (index + slides.length) % slides.length;
+            updateCarouselUI();
+            restartCarouselAutoplay();
+        };
+
+        window.nextCarouselSlide = function() {
+            window.goToCarouselSlide(currentCarouselIndex + 1);
+        };
+
+        window.prevCarouselSlide = function() {
+            window.goToCarouselSlide(currentCarouselIndex - 1);
+        };
+
+        function restartCarouselAutoplay() {
+            if (carouselAutoplayTimer) clearInterval(carouselAutoplayTimer);
+            carouselAutoplayTimer = setInterval(window.nextCarouselSlide, 5000);
+        }
+
+        // Event Listeners para botones y touch
+        document.addEventListener('DOMContentLoaded', () => {
+            const nextBtn = document.getElementById('carouselNextBtn');
+            const prevBtn = document.getElementById('carouselPrevBtn');
+            const container = document.getElementById('nosotrosCarousel');
+
+            if (nextBtn) nextBtn.addEventListener('click', window.nextCarouselSlide);
+            if (prevBtn) prevBtn.addEventListener('click', window.prevCarouselSlide);
+
+            if (container) {
+                // Pausar autoplay al hacer hover
+                container.addEventListener('mouseenter', () => {
+                    if (carouselAutoplayTimer) clearInterval(carouselAutoplayTimer);
+                });
+                container.addEventListener('mouseleave', restartCarouselAutoplay);
+
+                // Soporte táctil / swipe en móviles
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                container.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diffX = touchEndX - touchStartX;
+                    if (Math.abs(diffX) > 40) {
+                        if (diffX < 0) {
+                            window.nextCarouselSlide();
+                        } else {
+                            window.prevCarouselSlide();
+                        }
+                    }
+                }, { passive: true });
+            }
+
+            restartCarouselAutoplay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+codigo,nombre,categoria,precio_mayorista,precio_minorista,unidad,imagen,tag
+HAR-101,Harina de Trigo 0000 Molino Cañuelas (Bolsa 25kg),Harinas y Secos,"$ 21.400,00","$ 24.200,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Pastelería
+HAR-102,Premezcla para Chipá Especial (Bolsa 10kg),Harinas y Secos,"$ 29.800,00","$ 33.500,00",Bolsa 10 kg,/images/pizza-svgrepo-com.svg,Panaderías
+DUL-101,Dulce de Leche Repostero Alpino Premium (Pote 3kg),Dulces y Repostería,"$ 13.900,00","$ 15.600,00",Pote 3 kg,/images/cake-tall-svgrepo-com.svg,Más Vendido
+DUL-102,Cobertura de Chocolate Semiamargo Chocolart (Caja 5kg),Dulces y Repostería,"$ 31.500,00","$ 35.800,00",Caja 5 kg,/images/cake-tall-svgrepo-com.svg,Chocolatería
+ACE-101,Aceite de Girasol Alto Oleico Laur (Bidón 5 Litros),Aceites y Grasas,"$ 11.200,00","$ 12.800,00",Bidón 5 L,/images/oils-oil-svgrepo-com.svg,Gastronomía
+ACE-102,Grasa Primer Jugo Bovino Refinada (Caja 20kg),Aceites y Grasas,"$ 32.400,00","$ 36.900,00",Caja 20 kg,/images/oils-oil-svgrepo-com.svg,Panadería
+FIA-101,Queso Mozzarella en Barra La Paulina (Pieza x 4kg),Fiambres y Quesos,"$ 27.200,00","$ 30.800,00",Pieza x 4kg,/images/cheese-1-svgrepo-com.svg,Pizzerías
+FIA-102,Salame Tipo Milán Feteado al Vacío (Paquete 1kg),Fiambres y Quesos,"$ 12.500,00","$ 14.200,00",Paquete 1 kg,/images/cheese-1-svgrepo-com.svg,Picadas
+CON-101,Provenzal Deshidratada Seleccionada (Bolsa 1kg),Condimentos,"$ 8.700,00","$ 9.900,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos
+CON-102,Ají Molido Picante Seleccionado (Bolsa 1kg),Condimentos,"$ 9.300,00","$ 10.600,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos

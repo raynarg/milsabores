@@ -1,0 +1,23 @@
+codigo,nombre,categoria,precio_mayorista,precio_minorista,unidad,imagen,tag
+HAR-301,Harina 000 Cañuelas Pura Selección (Bolsa 50kg),Harinas y Secos,"$ 36.800,00","$ 41.500,00",Bolsa 50 kg,/images/pizza-svgrepo-com.svg,Industrial
+HAR-302,Harina de Centeno Integral (Bolsa 25kg),Harinas y Secos,"$ 24.500,00","$ 27.800,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Panadería Rústica
+HAR-303,Polenta Instantánea Selección (Bolsa 20kg),Harinas y Secos,"$ 16.900,00","$ 19.200,00",Bolsa 20 kg,/images/pizza-svgrepo-com.svg,Insumo Base
+HAR-304,Almidón de Maíz Refinado (Bolsa 25kg),Harinas y Secos,"$ 28.500,00","$ 32.000,00",Bolsa 25 kg,/images/pizza-svgrepo-com.svg,Repostería
+HAR-305,Avena Arrollada Tradicional (Bolsa 15kg),Harinas y Secos,"$ 19.200,00","$ 21.800,00",Bolsa 15 kg,/images/pizza-svgrepo-com.svg,Desayunos
+DUL-301,Dulce de Leche Pastelero Torre Vacalin (Balde 10kg),Dulces y Repostería,"$ 35.800,00","$ 39.500,00",Balde 10 kg,/images/cake-tall-svgrepo-com.svg,Precio Mayorista
+DUL-302,Gotas de Chocolate Baño de Repostería Alpino (Caja 10kg),Dulces y Repostería,"$ 42.000,00","$ 47.900,00",Caja 10 kg,/images/cake-tall-svgrepo-com.svg,Pastelería
+DUL-303,Pasta de Almendras Mazapán Chocolart (Balde 5kg),Dulces y Repostería,"$ 39.500,00","$ 44.500,00",Balde 5 kg,/images/cake-tall-svgrepo-com.svg,Gourmet
+DUL-304,Brillo Gel Neutro para Tartas (Balde 5kg),Dulces y Repostería,"$ 18.200,00","$ 20.600,00",Balde 5 kg,/images/cake-tall-svgrepo-com.svg,Pastelería
+DUL-305,Fondant Blanco en Pasta Listo para Usar (Balde 5kg),Dulces y Repostería,"$ 21.000,00","$ 23.800,00",Balde 5 kg,/images/cake-tall-svgrepo-com.svg,Decoración
+ACE-301,Aceite de Maíz Puro Green Olive (Bidón 10 Litros),Aceites y Grasas,"$ 22.500,00","$ 25.400,00",Bidón 10 L,/images/oils-oil-svgrepo-com.svg,Restaurantes
+ACE-302,Grasa para Fritura Profesional Termorresistente (Caja 20kg),Aceites y Grasas,"$ 38.000,00","$ 42.800,00",Caja 20 kg,/images/oils-oil-svgrepo-com.svg,Frituras
+ACE-303,Aceite de Oliva Extra Virgen Laur Edición Clásica (Bidón 5 Litros),Aceites y Grasas,"$ 49.500,00","$ 56.000,00",Bidón 5 L,/images/oils-oil-svgrepo-com.svg,Premium
+ACE-304,Margarina Untable con Sal para Repostería (Caja 10kg),Aceites y Grasas,"$ 24.800,00","$ 28.000,00",Caja 10 kg,/images/oils-oil-svgrepo-com.svg,Cocina
+FIA-301,Queso Barra Tybo Suave Feteable (Pieza 3.8kg),Fiambres y Quesos,"$ 24.900,00","$ 28.200,00",Pieza x 3.8kg,/images/cheese-1-svgrepo-com.svg,Sandwichería
+FIA-302,Queso Provolone Hilado Parrillero (Pieza 4kg),Fiambres y Quesos,"$ 36.500,00","$ 41.200,00",Pieza x 4kg,/images/cheese-1-svgrepo-com.svg,Parrillas
+FIA-303,Lomito Ahumado a las Finas Hierbas (Pieza x 2.5kg),Fiambres y Quesos,"$ 31.800,00","$ 35.900,00",Pieza x 2.5kg,/images/cheese-1-svgrepo-com.svg,Gourmet
+FIA-304,Mortadela con Pistachos Especial Selección (Pieza 3kg),Fiambres y Quesos,"$ 18.500,00","$ 21.000,00",Pieza x 3kg,/images/cheese-1-svgrepo-com.svg,Fiambrería
+CON-301,Canela en Rama Ceylán Seleccionada (Bolsa 500g),Condimentos,"$ 16.500,00","$ 18.800,00",Bolsa 500 g,/images/logo-milsabores-recortado.png,Repostería
+CON-302,Romero Seco Hojas Enteras (Bolsa 1kg),Condimentos,"$ 10.400,00","$ 11.900,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Gastronomía
+CON-303,Curry Suave Tradicional en Polvo (Bolsa 1kg),Condimentos,"$ 13.900,00","$ 15.800,00",Bolsa 1 kg,/images/logo-milsabores-recortado.png,Condimentos
+CON-304,Bicarbonato de Sodio Grado Alimenticio (Bolsa 5kg),Condimentos,"$ 12.000,00","$ 13.800,00",Bolsa 5 kg,/images/logo-milsabores-recortado.png,Panificación
